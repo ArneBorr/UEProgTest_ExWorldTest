@@ -52,25 +52,25 @@ void AProjectile::Tick(float DeltaTime)
 }
 
 void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
-{
-	// Check what type of actor projectile hit, react accordingly
-	auto tags = OtherActor->Tags;
-	for (auto tag : tags)
+{	
+	FName collisionPreset = Cast<UPrimitiveComponent>(OtherActor->GetRootComponent())->GetCollisionProfileName();
+	
+	// Loop through EffectData struct variables to determine against which tags to compare
+	for (TFieldIterator<UProperty> i = m_pEffectData->ShouldSelfDestruct.StaticStruct(); i; ++i)
 	{
-		// Loop through EffectData struct variables to determine against which tags to compare
-		for (TFieldIterator<UProperty> i = m_pEffectData->ShouldSelfDestruct.StaticStruct(); i; ++i)
+		UBoolProperty* property = Cast<UBoolProperty>(*i);
+		if (collisionPreset.ToString() == property->GetName())
 		{
-			UBoolProperty* property = Cast<UBoolProperty>(*i);
-			if (tag.ToString() == property->GetName())
-			{
-				OnApplyEffect(OtherActor, *m_pEffectData, tag.ToString());
-				bool shouldDestroy = property->GetPropertyValue(property->ContainerPtrToValuePtr<bool>(m_pEffectData));
-				if (shouldDestroy)
-					Destroy();
+			OnApplyEffect(OtherActor, *m_pEffectData, collisionPreset.ToString());
+			bool shouldDestroy = property->GetPropertyValue(property->ContainerPtrToValuePtr<bool>(m_pEffectData));
+			if (shouldDestroy)
+				Destroy();
 
-				return;
-			}
+			return;
 		}
 	}
+
+	//Default is destroy
+	Destroy();
 }
 

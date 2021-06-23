@@ -12,11 +12,13 @@ struct FEffectSelfDestructStruct
 public:
 	FEffectSelfDestructStruct() {}
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		bool Pawn = 0;
+		bool Pawn = true;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		bool Destructible = 0;
+		bool Destructible = true;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		bool WorldStatic = 0;
+		bool WorldStatic = true;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool BlockAll = true;
 };
 
 USTRUCT(BlueprintType)

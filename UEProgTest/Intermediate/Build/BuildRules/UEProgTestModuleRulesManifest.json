@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\Container\\Programeren\\UEProgTest\\Source\\UEProgTest\\UEProgTest.Build.cs",
+		"D:\\Container\\Programeren\\UEProgTest\\Source\\UEProgTest.Target.cs",
+		"D:\\Container\\Programeren\\UEProgTest\\Source\\UEProgTestEditor.Target.cs"
+	],
+	"EngineVersion": "4.26.2"
+}

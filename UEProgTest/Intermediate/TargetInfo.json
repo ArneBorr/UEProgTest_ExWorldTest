@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "UEProgTest",
+			"Path": "D:\\Container\\Programeren\\UEProgTest\\Source\\UEProgTest.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "UEProgTestEditor",
+			"Path": "D:\\Container\\Programeren\\UEProgTest\\Source\\UEProgTestEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

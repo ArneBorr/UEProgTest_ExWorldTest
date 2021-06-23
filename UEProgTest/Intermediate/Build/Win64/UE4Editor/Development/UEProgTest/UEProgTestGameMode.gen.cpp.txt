@@ -1,9 +1,0 @@
-D:\Container\Programeren\UEProgTest\Intermediate\Build\Win64\UE4Editor\Development\UEProgTest\Definitions.UEProgTest.h
-D:\Program Files (x86)\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
-D:\Program Files (x86)\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
-D:\Container\Programeren\UEProgTest\Source\UEProgTest/UEProgTestGameMode.h
-D:\Program Files (x86)\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
-D:\Program Files (x86)\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
-D:\Program Files (x86)\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
-D:\Program Files (x86)\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
-D:\Container\Programeren\UEProgTest\Intermediate\Build\Win64\UE4Editor\Inc\UEProgTest\UEProgTestGameMode.generated.h

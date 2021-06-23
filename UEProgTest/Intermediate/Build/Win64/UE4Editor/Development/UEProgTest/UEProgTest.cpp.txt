@@ -1,2 +1,0 @@
-D:\Container\Programeren\UEProgTest\Intermediate\Build\Win64\UE4Editor\Development\UEProgTest\Definitions.UEProgTest.h
-D:\Container\Programeren\UEProgTest\Source\UEProgTest\UEProgTest.h

@@ -41,7 +41,6 @@ void AProjectile::BeginPlay()
 	if (pTemp)
 	{
 		UMeshComponent* pMesh = Cast<UMeshComponent>(pTemp);
-		pMesh->OnComponentBeginOverlap.AddDynamic(this, &AProjectile::OnOverlapBegin);
 		pMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 	}
 }
@@ -52,38 +51,19 @@ void AProjectile::Tick(float DeltaTime)
 
 }
 
-void AProjectile::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	auto tags = OtherActor->Tags;
-	//UE_LOG(LogTemp,Warning, TEXT("%s"), *OtherActor->GetName());
-	for (auto tag : tags)
-	{
-		for (TFieldIterator<UProperty> i = m_pEffectData->ShouldSelfDestruct.StaticStruct(); i; ++i)
-		{
-			UBoolProperty* property = Cast<UBoolProperty>(*i);
-			if (tag.ToString() == property->GetName())
-			{
-				bool shouldDestroy = property->GetPropertyValue(property->ContainerPtrToValuePtr<bool>(m_pEffectData));
-				if (shouldDestroy)
-					Destroy();
-
-				return;
-			}
-		}
-	}
-}
-
 void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
 {
+	// Check what type of actor projectile hit, react accordingly
 	auto tags = OtherActor->Tags;
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *OtherActor->GetName());
 	for (auto tag : tags)
 	{
+		// Loop through EffectData struct variables to determine against which tags to compare
 		for (TFieldIterator<UProperty> i = m_pEffectData->ShouldSelfDestruct.StaticStruct(); i; ++i)
 		{
 			UBoolProperty* property = Cast<UBoolProperty>(*i);
 			if (tag.ToString() == property->GetName())
 			{
+				OnApplyEffect(OtherActor, *m_pEffectData, tag.ToString());
 				bool shouldDestroy = property->GetPropertyValue(property->ContainerPtrToValuePtr<bool>(m_pEffectData));
 				if (shouldDestroy)
 					Destroy();
